@@ -3,7 +3,7 @@
 @section('konten')
     <div class="bg-white rounded-xl shadow p-6">
         <h1 class="text-3xl font-bold">{{ $buku->judul }}</h1>
-        <p class="text-slate-500 mt-1">{{ $buku->penulis }} &middot; {{ $buku->tahun_terbit }}</p>
+        <p class="text-slate-500 mt-1">{{ $buku->penulis }} &middot; {{ $buku->penerbit ?: 'Penerbit belum diisi' }} &middot; {{ $buku->tahun_terbit }}</p>
         <div class="mt-6 text-slate-700 leading-relaxed">
             {{ $buku->sinopsis ?: 'Belum ada sinopsis.' }}
         </div>

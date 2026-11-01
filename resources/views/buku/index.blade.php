@@ -20,6 +20,7 @@
                 <tr>
                     <th class="px-4 py-3">Judul</th>
                     <th class="px-4 py-3">Penulis</th>
+                    <th class="px-4 py-3">Penerbit</th>
                     <th class="px-4 py-3">Tahun</th>
                     <th class="px-4 py-3 text-right">Aksi</th>
                 </tr>
@@ -33,6 +34,7 @@
                             </a>
                         </td>
                         <td class="px-4 py-3">{{ $buku->penulis }}</td>
+                        <td class="px-4 py-3">{{ $buku->penerbit ?: 'Belum diisi' }}</td>
                         <td class="px-4 py-3">{{ $buku->tahun_terbit }}</td>
                         <td class="px-4 py-3">
                             <div class="flex justify-end gap-2">
@@ -50,7 +52,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="4" class="px-4 py-8 text-center text-slate-500">
+                        <td colspan="5" class="px-4 py-8 text-center text-slate-500">
                             Belum ada buku.
                         </td>
                     </tr>

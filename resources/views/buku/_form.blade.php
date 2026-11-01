@@ -19,6 +19,15 @@
     </div>
 
     <div>
+        <label for="penerbit" class="block font-medium mb-1">Penerbit <span class="text-slate-400">(opsional)</span></label>
+        <input type="text" id="penerbit" name="penerbit" value="{{ old('penerbit', $buku->penerbit ?? '') }}"
+            class="w-full rounded-lg border px-3 py-2 @error('penerbit') border-red-500 @else border-slate-300 @enderror">
+        @error('penerbit')
+            <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+        @enderror
+    </div>
+
+    <div>
         <label for="tahun_terbit" class="block font-medium mb-1">Tahun Terbit</label>
         <input type="number" id="tahun_terbit" name="tahun_terbit"
             value="{{ old('tahun_terbit', $buku->tahun_terbit ?? '') }}"

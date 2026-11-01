@@ -78,6 +78,7 @@ class BukuController extends Controller
         return [
             'judul' => 'required|string|max:255',
             'penulis' => 'required|string|max:255',
+            'penerbit' => 'nullable|string|max:255',
             'tahun_terbit' => 'required|integer|min:1000|max:' . date('Y'),
             'sinopsis' => 'nullable|string',
         ];
