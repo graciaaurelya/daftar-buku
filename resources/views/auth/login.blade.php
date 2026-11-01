@@ -27,4 +27,9 @@
                 @enderror
             </div>
 
-            <button class="w-full bg-indigo-600 text-white px-5 py-2
+            <button type="submit" class="w-full bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700">
+                Masuk
+            </button>
+        </form>
+    </div>
+@endsection
