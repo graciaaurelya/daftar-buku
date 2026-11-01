@@ -15,8 +15,8 @@ class BukuController extends Controller
 
         $daftarBuku = Buku::query()
             ->when($cari, function ($query, $cari) {
-                $query->where('judul', 'like', "%{cari}%")
-                    ->orWhere('penulis', 'like', "%{cari}%");
+                $query->where('judul', 'like', "%{$cari}%")
+                    ->orWhere('penulis', 'like', "%{$cari}%");
             })
             ->latest()
             ->paginate(5)
@@ -38,7 +38,7 @@ class BukuController extends Controller
         Buku::create($data);
 
         return redirect()->route('buku.index')
-            ->with('success', 'Buku berhasil ditambahkan.');
+            ->with('sukses', 'Buku berhasil ditambahkan.');
     }
 
     // Menampilkan detail satu buku
@@ -60,7 +60,7 @@ class BukuController extends Controller
         $buku->update($data);
 
         return redirect()->route('buku.index')
-            ->with('success', 'Buku berhasil diperbarui.');
+            ->with('sukses', 'Buku berhasil diperbarui.');
     }
 
     // Menghapus buku
@@ -69,7 +69,7 @@ class BukuController extends Controller
         $buku->delete();
 
         return redirect()->route('buku.index')
-            ->with('success', 'Buku berhasil dihapus.');
+            ->with('sukses', 'Buku berhasil dihapus.');
     }
 
     // Aturan validasi dipakai bersama store() dan update()

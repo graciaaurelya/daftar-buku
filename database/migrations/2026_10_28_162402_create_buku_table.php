@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('judul');
             $table->string('penulis');
             $table->unsignedSmallInteger('tahun_terbit');
+            $table->text('sinopsis')->nullable();
             $table->timestamps();
         });
     }
