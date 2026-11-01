@@ -13,12 +13,32 @@
     <nav class="bg-indigo-700 text-white shadow">
         <div class="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
             <a href="{{ route('buku.index') }}" class="text-xl font-bold">📚 Perpustakaan Mini</a>
-            <a href="{{ route('buku.create') }}"
-                class="bg-white text-indigo-700 px-4 py-2 rounded-lg font-semibold hover:bg-indigo-50">
-                + Tambah Buku
-            </a>
+
+            <div class="flex items-center gap-3">
+                @auth
+                    <a href="{{ route('buku.create') }}"
+                        class="bg-white text-indigo-700 px-4 py-2 rounded-lg font-semibold hover:bg-indigo-50">
+                        + Tambah Buku
+                    </a>
+
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button class="px-4 py-2 rounded-lg border border-white/50 hover:bg-indigo-600">
+                            Logout
+                        </button>
+                    </form>
+                @endauth
+
+                @guest
+                    <a href="{{ route('login') }}"
+                        class="bg-white text-indigo-700 px-4 py-2 rounded-lg font-semibold hover:bg-indigo-50">
+                        Login
+                    </a>
+                @endguest
+            </div>
         </div>
     </nav>
+
     <main class="max-w-4xl mx-auto px-4 py-8">
         {{-- Pesan sukses (flash message) --}}
         @if (session('sukses'))
@@ -26,9 +46,11 @@
                 {{ session('sukses') }}
             </div>
         @endif
+
         {{-- Isi halaman dari setiap view --}}
         @yield('konten')
     </main>
+
     <footer class="text-center text-sm text-slate-500 py-6">
         Dibuat dengan Laravel, Blade &amp; Tailwind CSS
     </footer>
