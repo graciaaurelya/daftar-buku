@@ -14,51 +14,37 @@
         </form>
     </div>
 
-    <div class="bg-white rounded-xl shadow overflow-hidden">
-        <table class="w-full text-left">
-            <thead class="bg-slate-50 text-sm uppercase text-slate-500">
-                <tr>
-                    <th class="px-4 py-3">Judul</th>
-                    <th class="px-4 py-3">Penulis</th>
-                    <th class="px-4 py-3">Penerbit</th>
-                    <th class="px-4 py-3">Tahun</th>
-                    <th class="px-4 py-3 text-right">Aksi</th>
-                </tr>
-            </thead>
-            <tbody class="divide-y divide-slate-100">
-                @forelse ($daftarBuku as $buku)
-                    <tr class="hover:bg-slate-50">
-                        <td class="px-4 py-3 font-medium">
-                            <a href="{{ route('buku.show', $buku) }}" class="text-indigo-700 hover:underline">
-                                {{ $buku->judul }}
-                            </a>
-                        </td>
-                        <td class="px-4 py-3">{{ $buku->penulis }}</td>
-                        <td class="px-4 py-3">{{ $buku->penerbit ?: 'Belum diisi' }}</td>
-                        <td class="px-4 py-3">{{ $buku->tahun_terbit }}</td>
-                        <td class="px-4 py-3">
-                            <div class="flex justify-end gap-2">
-                                <a href="{{ route('buku.edit', $buku) }}"
-                                    class="px-3 py-1 rounded bg-amber-100 text-amber-800 hover:bg-amber-200">Ubah</a>
+    {{-- Daftar buku dalam bentuk kartu --}}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        @forelse ($daftarBuku as $buku)
+            <div class="bg-white rounded-xl shadow p-4 flex flex-col justify-between">
+                <div>
+                    <a href="{{ route('buku.show', $buku) }}" class="text-lg font-semibold text-indigo-700 hover:underline">
+                        {{ $buku->judul }}
+                    </a>
+                    <p class="text-sm text-slate-500 mt-1">{{ $buku->penulis }}</p>
+                    <p class="text-sm text-slate-500">
+                        {{ $buku->penerbit ?: 'Penerbit belum diisi' }} &middot; {{ $buku->tahun_terbit }}
+                    </p>
+                </div>
 
-                                <form action="{{ route('buku.destroy', $buku) }}" method="POST"
-                                    onsubmit="return confirm('Yakin hapus buku ini?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="px-3 py-1 rounded bg-red-100 text-red-700 hover:bg-red-200">Hapus</button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="5" class="px-4 py-8 text-center text-slate-500">
-                            Belum ada buku.
-                        </td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
+                <div class="flex justify-end gap-2 mt-4">
+                    <a href="{{ route('buku.edit', $buku) }}"
+                        class="px-3 py-1 rounded bg-amber-100 text-amber-800 hover:bg-amber-200">Ubah</a>
+
+                    <form action="{{ route('buku.destroy', $buku) }}" method="POST"
+                        onsubmit="return confirm('Yakin hapus buku ini?')">
+                        @csrf
+                        @method('DELETE')
+                        <button class="px-3 py-1 rounded bg-red-100 text-red-700 hover:bg-red-200">Hapus</button>
+                    </form>
+                </div>
+            </div>
+        @empty
+            <div class="md:col-span-2 py-8 text-center text-slate-500">
+                Belum ada buku.
+            </div>
+        @endforelse
     </div>
 
     {{-- Navigasi halaman (pagination) --}}
